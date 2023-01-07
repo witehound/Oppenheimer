@@ -22,17 +22,23 @@ export const getPriceOnUniV2 = async (
   amountIn: BigNumber,
   routerAddress: string
 ): Promise<BigNumber> => {
-  const V2Router = new ethers.Contract(
-    routerAddress,
-    UniswapV2Router.abi,
-    maticProvider
-  );
-  const amountsOut = await V2Router.getAmountsOut(amountIn, [
-    tokenIn,
-    tokenOut,
-  ]);
-  if (!amountsOut || amountsOut.length !== 2) {
-    return getBigNumber(0);
-  }
-  return amountsOut[1];
+  try {
+    const V2Router = new ethers.Contract(
+      routerAddress,
+      UniswapV2Router.abi,
+      maticProvider
+    );
+
+    const amountsOut = await V2Router.getAmountsOut(amountIn, [
+      tokenIn,
+      tokenOut,
+    ]);
+
+    if (!amountsOut || amountsOut.length !== 2) {
+      return getBigNumber(0);
+    }
+    return amountsOut[1];
+  } catch (error) {}
+
+  return getBigNumber(0);
 };

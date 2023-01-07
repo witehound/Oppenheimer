@@ -7,6 +7,8 @@ import {
   gasLimit,
   tradingRoutes,
   diffPercentage,
+  lowerLimit,
+  capital,
 } from "./config";
 import { flashloan } from "./flashloan";
 import { checkIfProfitable, getBigNumber } from "./utils";
@@ -101,14 +103,13 @@ function sleep(ms: number) {
 const arbitrageFunc = () => {
   return async function arbitrage(trade: any) {
     try {
-      let amt = 20000;
-      let decimal = Number(trade.amountIn);
-      trade.amountIn = getBigNumber(amt, decimal);
-
+      trade.amountIn = getBigNumber(capital, 6);
       const bnLoanAmount = trade.amountIn;
       let bnExpectedAmountOut = await findOpp(trade);
 
-      let temp = Number(ethers.utils.formatUnits(bnExpectedAmountOut, decimal));
+      let temp = Number(
+        ethers.utils.formatUnits(bnExpectedAmountOut.toString(), 6)
+      );
 
       const isProfitable = checkIfProfitable(
         bnLoanAmount,
@@ -116,15 +117,15 @@ const arbitrageFunc = () => {
         bnExpectedAmountOut
       );
 
-      if (temp > 12000) {
+      if (temp > lowerLimit) {
         console.log("BN", temp);
       }
 
-      if (isProfitable) {
-        console.log(
-          `Expected amount in ${amt} and Expceted amount out ${bnExpectedAmountOut}, Profitable ${isProfitable}`
-        );
-      }
+      // if (isProfitable) {
+      //   console.log(
+      //     `Expected amount in ${amt} and Expceted amount out ${bnExpectedAmountOut}, Profitable ${isProfitable}`
+      //   );
+      // }
     } catch (err) {
       console.log(err.message);
     }
@@ -140,7 +141,7 @@ export const main = async () => {
     await pool({
       collection: pairs,
       task: arbitrageFunc(),
-      // maxConcurrency: 1,
+      // maxConcurrency: 50,
     });
     await sleep(1000);
   }

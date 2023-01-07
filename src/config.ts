@@ -9,6 +9,10 @@ export const interval = 4 * 1000;
 
 export const diffPercentage = 0.03;
 
+export const lowerLimit = 29000;
+
+export const capital = 30000;
+
 //export const chainId = 1;// Ethereum
 //export const chainId = 56;// Binance Smart Chain
 export const chainId = 137; // Polygon

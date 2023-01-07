@@ -9,7 +9,6 @@ const errReport = log4js.getLogger("error");
 export const findOpp = async (trade: ITrade) => {
   let amountOut = trade.amountIn;
   let err: number = 0;
-
   for (const [i, protocol] of trade.protocols.entries()) {
     switch (protocol) {
       // uniswap v3
@@ -25,13 +24,11 @@ export const findOpp = async (trade: ITrade) => {
             amountOut
           );
 
-          // console.log("amountout", amountOut);
-
           break;
         } catch (e) {
           err++;
-          logError(e);
-          // amountOut = getBigNumber(0);
+
+          amountOut = getBigNumber(0);
           break;
         }
       // uniswap v2
@@ -50,9 +47,8 @@ export const findOpp = async (trade: ITrade) => {
 
           break;
         } catch (e) {
-          logError(e);
           err++;
-          // amountOut = getBigNumber(0);
+          amountOut = getBigNumber(0);
           break;
         }
     }

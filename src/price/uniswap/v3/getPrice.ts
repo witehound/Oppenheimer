@@ -28,30 +28,21 @@ export const getPriceOnUniV3 = async (
   tokenOut: string,
   amountIn: BigNumber
 ): Promise<BigNumber> => {
-
-  const fee = getUniswapV3PoolFee([tokenIn, tokenOut]);
-  let quotedAmountOut;
-
   try {
-    quotedAmountOut = await quoterContract.callStatic.quoteExactInputSingle(
-      tokenIn,
-      tokenOut,
-      fee,
-      amountIn.toString(),
-      0
-    );
+    const fee = getUniswapV3PoolFee([tokenIn, tokenOut]);
+    const quotedAmountOut =
+      await quoterContract.callStatic.quoteExactInputSingle(
+        tokenIn,
+        tokenOut,
+        fee,
+        amountIn.toString(),
+        0
+      );
 
-    // console.log("quotedAmountOut", quotedAmountOut);
-
-
-  } catch (error) {
-    if (error.reason !== "missing revert data in call exception; Transaction reverted without a reason string"){
-      console.log("2",error.reason);
+    if (!ethers.BigNumber.isBigNumber(quotedAmountOut)) {
+      return getBigNumber(0);
     }
-  }
-
-  if (!ethers.BigNumber.isBigNumber(quotedAmountOut)) {
-    return getBigNumber(0);
-  }
-  return quotedAmountOut;
+    return quotedAmountOut;
+  } catch (error) {}
+  return getBigNumber(0);
 };

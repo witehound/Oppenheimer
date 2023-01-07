@@ -20,7 +20,7 @@ const getFreshRoute = () => {
   let tokenHops = [];
 
   for (let key1 in ERC20Token) {
-    if (key1 === "USDC" || key1 === "WETH" || key1 === "USDT") {
+    if (key1 === "USDC" || key1 === "USDT") {
       for (let key2 in ERC20Token) {
         if (key1 !== key2) {
           for (let key3 in ERC20Token) {
