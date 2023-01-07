@@ -24,7 +24,7 @@ const Flashloan = new ethers.Contract(
 
 type testedPoolMap = { [erc20Address: string]: string[] };
 
-const testedPools: testedPoolMap = {
+export const testedPools: testedPoolMap = {
   WETH: [dodoV2Pool.WETH_USDC],
   USDC: [dodoV2Pool.WETH_USDC],
   WMATIC: [dodoV2Pool.WMATIC_USDC],
