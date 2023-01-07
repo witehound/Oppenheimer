@@ -7,14 +7,18 @@ import * as log4js from "log4js";
 const errReport = log4js.getLogger("error");
 
 export const findOpp = async (trade: ITrade) => {
-
   let amountOut = trade.amountIn;
+  let err: number = 0;
+
   for (const [i, protocol] of trade.protocols.entries()) {
     switch (protocol) {
       // uniswap v3
       case 0:
         try {
-          
+          if (err > 0) {
+            amountOut = getBigNumber(0);
+            break;
+          }
           amountOut = await getPriceOnUniV3(
             trade.path[i].address,
             trade.path[i + 1].address,
@@ -22,34 +26,40 @@ export const findOpp = async (trade: ITrade) => {
           );
 
           // console.log("amountout", amountOut);
-          
+
           break;
         } catch (e) {
+          err++;
           logError(e);
-          console.log(e);
           // amountOut = getBigNumber(0);
           break;
         }
       // uniswap v2
       default:
         try {
+          if (err > 0) {
+            amountOut = getBigNumber(0);
+            break;
+          }
           amountOut = await getPriceOnUniV2(
             trade.path[i].address,
             trade.path[i + 1].address,
             amountOut,
             findRouterFromProtocol(protocol)
           );
-          // console.log("amount", Number(amountOut));
+
           break;
         } catch (e) {
           logError(e);
-          if (e.reason !== "missing revert data in call exception; Transaction reverted without a reason string"){
-            console.log("2",e.reason);
-          }
+          err++;
           // amountOut = getBigNumber(0);
           break;
         }
     }
+  }
+
+  if (err > 0) {
+    return getBigNumber(0);
   }
 
   return amountOut;

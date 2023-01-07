@@ -10,7 +10,7 @@ import {
 } from "./config";
 import { flashloan } from "./flashloan";
 import { checkIfProfitable, getBigNumber } from "./utils";
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 // import { chalkDifference, chalkPercentage, chalkTime } from "./utils/chalk";
 import { flashloanTable, priceTable } from "./consoleUI/table";
 // import { initPriceTable, renderTables } from "./consoleUI";
@@ -100,20 +100,34 @@ function sleep(ms: number) {
 
 const arbitrageFunc = () => {
   return async function arbitrage(trade: any) {
-    let amt = 20000;
-    trade.amountIn = getBigNumber(amt, 18);
-    const bnLoanAmount = trade.amountIn;
-    let bnExpectedAmountOut = await findOpp(trade);
-    
-    const isProfitable = checkIfProfitable(
-      bnLoanAmount,
-      diffPercentage,
-      bnExpectedAmountOut
-    );
-    if (isProfitable)
-      console.log(
-        `Expected amount in ${amt} and Expceted amount out ${bnExpectedAmountOut}, Profitable ${isProfitable}`
+    try {
+      let amt = 20000;
+      let decimal = Number(trade.amountIn);
+      trade.amountIn = getBigNumber(amt, decimal);
+
+      const bnLoanAmount = trade.amountIn;
+      let bnExpectedAmountOut = await findOpp(trade);
+
+      let temp = Number(ethers.utils.formatUnits(bnExpectedAmountOut, decimal));
+
+      const isProfitable = checkIfProfitable(
+        bnLoanAmount,
+        diffPercentage,
+        bnExpectedAmountOut
       );
+
+      if (temp > 12000) {
+        console.log("BN", temp);
+      }
+
+      if (isProfitable) {
+        console.log(
+          `Expected amount in ${amt} and Expceted amount out ${bnExpectedAmountOut}, Profitable ${isProfitable}`
+        );
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 };
 
@@ -131,7 +145,7 @@ export const main = async () => {
     await sleep(1000);
   }
 
-  // formnatRoutes()c
+  // formnatRoutes()
 };
 
 main().catch((error) => {
