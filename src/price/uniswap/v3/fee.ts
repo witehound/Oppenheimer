@@ -52,7 +52,9 @@ export const uniswapV3Fee: FeeMap = {
 };
 
 export const getUniswapV3PoolFee = (tokenAddresses: string[]): number => {
+
   const tokens = tokenAddresses.map(findToken).sort();
+  
   try {
     const fee = uniswapV3Fee[tokens[0]][tokens[1]];
     if (!fee) {

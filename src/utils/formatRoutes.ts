@@ -3,6 +3,7 @@ import path from "path";
 import { ERC20Token, uniswapRouter } from "../constants/addresses";
 import { getBigNumber } from ".";
 import { testedPools } from "../flashloan";
+import { BigNumber } from "ethers";
 
 function getPairsFile() {
   return path.join(__dirname, `../../pairs.json`);
@@ -10,30 +11,30 @@ function getPairsFile() {
 
 const formnatRoutes = () => {
   let data = [];
-  let amountIn = getBigNumber(20000, ERC20Token.USDC.decimals);
   let tokenHops = getFreshRoute();
   let prototocol = getProtocols();
 
-  createTradeRoutes(tokenHops,prototocol,amountIn)
+  createTradeRoutes(tokenHops, prototocol);
 };
 
 const getFreshRoute = () => {
   let tokenHops = [];
 
   for (let key1 in ERC20Token) {
-    if (testedPools[key1] != undefined) {
+    if (key1 === "USDC") {
       for (let key2 in ERC20Token) {
-        if (key1 !== key2)
+        if (key1 !== key2) {
           for (let key3 in ERC20Token) {
             if (key1 === key3) {
-              let temp: any[] = [
-                ERC20Token[key1].address,
-                ERC20Token[key2].address,
-                ERC20Token[key3].address,
-              ];
+              let temp = {
+                hop: [ERC20Token[key1], ERC20Token[key2], ERC20Token[key3]],
+                decimals: ERC20Token[key1].decimals,
+              };
+
               tokenHops.push(temp);
             }
           }
+        }
       }
     }
   }
@@ -59,18 +60,14 @@ const getProtocols = () => {
   return tempProtocol;
 };
 
-const createTradeRoutes = (
-  tokensHops: any[],
-  protocols: any[],
-  amountIn: any
-) => {
+const createTradeRoutes = (tokensHops: any[], protocols: any[]) => {
   let trades: any[] = [];
   for (let a of tokensHops) {
     for (let b of protocols) {
       let temp = {
-        path: a,
+        path: a.hop,
         protocols: b,
-        amountIn,
+        amountIn: a.decimals,
       };
       trades.push(temp);
     }
@@ -81,5 +78,12 @@ const createTradeRoutes = (
 
   return trades;
 };
+
+export async function tryLoadPairs() {
+  let pairs: any[] = [];
+  let pairsFile = getPairsFile();
+  pairs = JSON.parse(fs.readFileSync(pairsFile, "utf-8"));
+  return pairs;
+}
 
 export default formnatRoutes;

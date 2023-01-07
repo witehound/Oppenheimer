@@ -1092,6 +1092,11 @@
   "resolved" "https://registry.npmjs.org/@openzeppelin/contracts/-/contracts-4.8.0.tgz"
   "version" "4.8.0"
 
+"@ricokahler/pool@^1.2.0":
+  "integrity" "sha512-Jo+igTuJnt6uEQ15zE2ObN6jkPOmpHuCSBERplK76QWtjYRkEGvD/NI8TEn3bfInWOdezJUAqxo6ykmG6UZ8LA=="
+  "resolved" "https://registry.npmjs.org/@ricokahler/pool/-/pool-1.2.0.tgz"
+  "version" "1.2.0"
+
 "@scure/base@~1.1.0":
   "integrity" "sha512-ZxOhsSyxYwLJj3pLZCefNitxsj093tb2vq90mp2txoYeBqbcjDjqFhyM8eUjq/uFm6zJ+mUuqxlS2FkuSY1MTA=="
   "resolved" "https://registry.npmjs.org/@scure/base/-/base-1.1.1.tgz"

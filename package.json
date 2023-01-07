@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "latest",
+    "@ricokahler/pool": "^1.2.0",
     "@types/node": "latest",
     "axios": "latest",
     "console-table-printer": "latest",
