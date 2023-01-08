@@ -27,8 +27,8 @@ export const findOpp = async (trade: ITrade) => {
           break;
         } catch (e) {
           err++;
-
           amountOut = getBigNumber(0);
+          return getBigNumber(0);
           break;
         }
       // uniswap v2
@@ -49,6 +49,7 @@ export const findOpp = async (trade: ITrade) => {
         } catch (e) {
           err++;
           amountOut = getBigNumber(0);
+          return getBigNumber(0);
           break;
         }
     }

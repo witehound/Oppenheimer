@@ -1,4 +1,6 @@
 import { config as dotEnvConfig } from "dotenv";
+import fs from "fs";
+import path from "path";
 dotEnvConfig();
 import {
   interval,
@@ -103,12 +105,19 @@ function sleep(ms: number) {
 const arbitrageFunc = () => {
   return async function arbitrage(trade: any) {
     try {
-      trade.amountIn = getBigNumber(capital, 6);
+      let decimals =
+        trade.path[0].symbol === "USDC" || trade.path[0].symbol === "USDT"
+          ? 6
+          : 18;
+      // let decimals = 18;
+
+      trade.amountIn = getBigNumber(capital, decimals);
       const bnLoanAmount = trade.amountIn;
+
       let bnExpectedAmountOut = await findOpp(trade);
 
       let temp = Number(
-        ethers.utils.formatUnits(bnExpectedAmountOut.toString(), 6)
+        ethers.utils.formatUnits(bnExpectedAmountOut.toString(), decimals)
       );
 
       const isProfitable = checkIfProfitable(
@@ -118,7 +127,13 @@ const arbitrageFunc = () => {
       );
 
       if (temp > lowerLimit) {
-        console.log("BN", temp);
+        console.log("TX : ", temp);
+        console.log(
+          "trade",
+          trade.path[0].symbol,
+          trade.path[1].symbol,
+          trade.path[2].symbol
+        );
       }
 
       // if (isProfitable) {
@@ -133,7 +148,7 @@ const arbitrageFunc = () => {
 };
 
 export const main = async () => {
-  const pairs = await tryLoadPairs();
+  const pairs = await tryLoadPairs("pairs");
 
   console.log("Start arbitraging");
 
@@ -141,12 +156,12 @@ export const main = async () => {
     await pool({
       collection: pairs,
       task: arbitrageFunc(),
-      // maxConcurrency: 50,
+      maxConcurrency: 100,
     });
     await sleep(1000);
   }
 
-  // formnatRoutes()
+  // formnatRoutes("ERC")
 };
 
 main().catch((error) => {

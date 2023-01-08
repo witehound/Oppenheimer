@@ -37,6 +37,7 @@ export const getPriceOnUniV2 = async (
     if (!amountsOut || amountsOut.length !== 2) {
       return getBigNumber(0);
     }
+
     return amountsOut[1];
   } catch (error) {}
 

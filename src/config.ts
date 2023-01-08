@@ -9,15 +9,16 @@ export const interval = 4 * 1000;
 
 export const diffPercentage = 0.03;
 
-export const lowerLimit = 29000;
+export const lowerLimit = 9950;
 
-export const capital = 30000;
+export const capital = 10000;
 
 //export const chainId = 1;// Ethereum
-//export const chainId = 56;// Binance Smart Chain
+// export const chainId = 56;// Binance Smart Chain
 export const chainId = 137; // Polygon
 
 export const explorerURL = "https://polygonscan.com";
+// export const explorerURL = "https://bscscan.com/"
 
 export const tradingRoutes: ITrade[] = [
   {
