@@ -38,3 +38,11 @@ userObjectTwo = {
     name: "iman",
     number: 12,
 }
+
+// Any keyword
+
+let any: any
+
+any = 12
+any = "string"
+any = false
