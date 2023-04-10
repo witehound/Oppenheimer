@@ -12,3 +12,11 @@ let stringArray: string[];
 let numberArray: number[];
 
 let numberOrNumbrArray: number[] | string[];
+
+//Objects with types
+
+let userObject: {
+    name: string,
+    number: number,
+    status : boolean
+}
