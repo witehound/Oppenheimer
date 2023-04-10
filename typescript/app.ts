@@ -20,3 +20,21 @@ let userObject: {
     number: number,
     status : boolean
 }
+
+userObject = {
+    name: "iman",
+    number: 12,
+    status : false
+}
+
+//Objects with types and optional types
+let userObjectTwo: {
+    name: string,
+    number: number,
+    status ?: boolean
+}
+
+userObjectTwo = {
+    name: "iman",
+    number: 12,
+}
