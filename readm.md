@@ -1,0 +1,1 @@
+GitHub repo showcasing my evolution as a software engineer through various projects, commits, and collaborations. Tracks progress, code quality, and newfound skills. Reflects a journey of continuous learning and improvement
