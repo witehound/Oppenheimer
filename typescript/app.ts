@@ -1,3 +1,5 @@
 let variable = "hello"
 
-let number : Number = 45
+let number: number;
+
+let stringOrNumber: string | number;
