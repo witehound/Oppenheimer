@@ -94,3 +94,28 @@ let student: IStudent = {
     number: 12,
     id : 2777
 }
+
+//Genrics
+interface IAuthor {
+    id: number,
+    name : string
+}
+
+interface ICategory {
+    id: number,
+    title : string
+}
+
+interface IPost {
+    id: number,
+    title: string,
+    desc: string, 
+    extra : IAuthor[] | ICategory[]
+}
+
+interface IPostWithGenerics<T> {
+    id: number,
+    title: string,
+    desc: string, 
+    extra : T
+}
