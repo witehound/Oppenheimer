@@ -135,3 +135,11 @@ interface IPostWithGenericsWithLimitation<T extends object> {
     desc: string, 
     extra : T[]
 }
+
+//Testing Genrics with limitations 
+let posWithObject : IPostWithGenerics<IStudent> = {
+    id : 1,
+    title: "1",
+    desc: "1", 
+    extra : [student]
+}
