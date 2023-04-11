@@ -48,7 +48,17 @@ any = "string"
 any = false
 
 //Functions
-// returning a type
+// returning a type 
 let funcReturnString = () : string => {
     return "string"
+}
+
+// Argument types 
+let funcTakeArgType = ( num : number )  : number => {
+    return num
+}
+
+// returning void
+let funcReturnVoid = ( num : number )  : void => {
+    num * 2
 }
