@@ -117,5 +117,13 @@ interface IPostWithGenerics<T> {
     id: number,
     title: string,
     desc: string, 
-    extra : T
+    extra : T[]
+}
+
+//Testing genrics
+let posWithStrings : IPostWithGenerics<string | number> = {
+    id : 1,
+    title: "1",
+    desc: "1", 
+    extra : ["1", "2", 1, 2]
 }
