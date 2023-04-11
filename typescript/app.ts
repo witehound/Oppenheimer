@@ -28,13 +28,13 @@ userObject = {
 }
 
 //Objects with types and optional types
-let userObjectTwo: {
+type user = {
     name: string,
     number: number,
     status ?: boolean
 }
 
-userObjectTwo = {
+let userTwo : user = {
     name: "iman",
     number: 12,
 }
@@ -53,12 +53,19 @@ let funcReturnString = () : string => {
     return "string"
 }
 
-// Argument types 
-let funcTakeArgType = ( num : number )  : number => {
-    return num
-}
 
 // returning void
 let funcReturnVoid = ( num : number )  : void => {
     num * 2
 }
+
+// Argument types 
+let funcTakeArgType = ( num : number )  : number => {
+    return num
+}
+
+// Using type aliases
+let funcReturnType = ( user : user) : user => {
+    return  user
+}
+
