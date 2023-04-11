@@ -80,6 +80,17 @@ let testFunctionSignatures: functionSignatures = (user : user) => {
 interface IUser  {
     name: string,
     number: number,
-    status : boolean
+    status ?: boolean
 }
 
+
+//Extends
+interface IStudent extends IUser {
+    id : number
+}
+
+let student: IStudent = {
+    name: "iman",
+    number: 12,
+    id : 2777
+}
