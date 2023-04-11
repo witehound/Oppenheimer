@@ -76,3 +76,10 @@ let testFunctionSignatures: functionSignatures = (user : user) => {
     return user
 }
 
+//Intrfaces
+interface IUser  {
+    name: string,
+    number: number,
+    status : boolean
+}
+
