@@ -69,3 +69,10 @@ let funcReturnType = ( user : user) : user => {
     return  user
 }
 
+// Function signatures
+type functionSignatures = (user: user) => user
+
+let testFunctionSignatures: functionSignatures = (user : user) => {
+    return user
+}
+
