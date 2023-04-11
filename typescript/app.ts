@@ -46,3 +46,9 @@ let any: any
 any = 12
 any = "string"
 any = false
+
+//Functions
+// returning a type
+let funcReturnString = () : string => {
+    return "string"
+}
