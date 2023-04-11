@@ -127,3 +127,11 @@ let posWithStrings : IPostWithGenerics<string | number> = {
     desc: "1", 
     extra : ["1", "2", 1, 2]
 }
+
+//Genrics with limitations 
+interface IPostWithGenericsWithLimitation<T extends object> {
+    id: number,
+    title: string,
+    desc: string, 
+    extra : T[]
+}
