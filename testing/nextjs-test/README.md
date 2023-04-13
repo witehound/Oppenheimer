@@ -6,3 +6,4 @@ Packages for testing
 - @testing-library/jest-dom
 Added jest.config.mjs file to root dirctory
 Added jest.setup.js file to root directory
+Added jest and jest:watch to package.json
