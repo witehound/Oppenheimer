@@ -143,3 +143,4 @@ let posWithObject : IPostWithGenerics<IStudent> = {
     desc: "1", 
     extra : [student]
 }
+//
