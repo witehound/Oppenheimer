@@ -4,6 +4,6 @@ import Home from "../pages";
 describe("Home page - rendering ", () => {
   it("Should have home page text", () => {
     render(<Home />);
-    screen.getAllByText("Home pages");
+    expect(screen.getAllByText("Home page"));
   });
 });
