@@ -8,3 +8,4 @@ Added jest.config.mjs file to root dirctory
 Added jest.setup.js file to root directory
 Added jest and jest:watch to package.json
 Understanding tests, behavioural testing for uis, interaction
+Learned how to render and find text in the documnet
