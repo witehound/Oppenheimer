@@ -1,8 +1,8 @@
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div>
       <h1>Home page</h1>
-      <button>Click</button>
+      <button>Click Me</button>
     </div>
   );
 }

@@ -8,6 +8,8 @@ describe("Home page - rendering ", () => {
   });
   it("Should have button", () => {
     render(<Home />);
-    expect(screen.getByRole("button")).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Click Me" })
+    ).toBeInTheDocument();
   });
 });
