@@ -6,4 +6,8 @@ describe("Home page - rendering ", () => {
     render(<Home />);
     expect(screen.getByText("Home page")).toBeInTheDocument();
   });
+  it("Should have button", () => {
+    render(<Home />);
+    expect(screen.getByRole("button")).toBeInTheDocument();
+  });
 });
