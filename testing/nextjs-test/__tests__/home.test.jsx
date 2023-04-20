@@ -12,4 +12,8 @@ describe("Home page - rendering ", () => {
       screen.getByRole("button", { name: "Click Me" })
     ).toBeInTheDocument();
   });
+  it("Should have input field with label Enter random text", () => {
+    render(<Home />);
+    screen.getByRole("textbox");
+  });
 });
