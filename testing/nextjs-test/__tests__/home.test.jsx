@@ -14,6 +14,6 @@ describe("Home page - rendering ", () => {
   });
   it("Should have input field with label Enter random text", () => {
     render(<Home />);
-    screen.getByRole("textbox");
+    expect(screen.getByLabelText(/Enter random text/)).toBeInTheDocument();
   });
 });
