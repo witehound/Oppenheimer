@@ -24,4 +24,8 @@ describe("Home page - rendering ", () => {
     render(<Home />);
     expect(screen.getByDisplayValue(/audio/)).toBeInTheDocument();
   });
+  it("Should not find the Suprise text", () => {
+    render(<Home />);
+    expect(screen.getByDisplayValue(/audio/)).toBeInTheDocument();
+  });
 });

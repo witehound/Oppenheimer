@@ -18,7 +18,7 @@ export default function Home() {
       </div>
       <div>
         <span>This the text</span>
-        {showText ? <h1>Hello world</h1> : null}
+        {showText ? <h1>Suprise text</h1> : null}
         <button onClick={() => setShowText(!showText)}>Show text</button>
       </div>
     </div>
