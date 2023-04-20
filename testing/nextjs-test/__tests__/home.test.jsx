@@ -16,4 +16,8 @@ describe("Home page - rendering ", () => {
     render(<Home />);
     expect(screen.getByLabelText(/Enter random text/)).toBeInTheDocument();
   });
+  it("Should find input field by placeholder search", () => {
+    render(<Home />);
+    expect(screen.getByPlaceholderText(/earch.../)).toBeInTheDocument();
+  });
 });

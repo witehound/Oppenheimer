@@ -7,6 +7,9 @@ export default function Home() {
         <label htmlFor="randomText">Enter random text</label>
         <input id="randomText" />
       </div>
+      <div>
+        <input id="specificText" placeholder="search..." />
+      </div>
     </div>
   );
 }
