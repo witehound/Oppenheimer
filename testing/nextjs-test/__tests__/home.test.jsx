@@ -18,6 +18,10 @@ describe("Home page - rendering ", () => {
   });
   it("Should find input field by placeholder search", () => {
     render(<Home />);
-    expect(screen.getByPlaceholderText(/earch.../)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/search.../)).toBeInTheDocument();
+  });
+  it("Should find input field by text value", () => {
+    render(<Home />);
+    expect(screen.getByDisplayValue(/earch.../)).toBeInTheDocument();
   });
 });

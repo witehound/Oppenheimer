@@ -10,6 +10,9 @@ export default function Home() {
       <div>
         <input id="specificText" placeholder="search..." />
       </div>
+      <div>
+        <input id="specificText" value="audio" />
+      </div>
     </div>
   );
 }
