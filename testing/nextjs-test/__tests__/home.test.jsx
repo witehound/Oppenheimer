@@ -22,6 +22,6 @@ describe("Home page - rendering ", () => {
   });
   it("Should find input field by text value", () => {
     render(<Home />);
-    expect(screen.getByDisplayValue(/earch.../)).toBeInTheDocument();
+    expect(screen.getByDisplayValue(/audio/)).toBeInTheDocument();
   });
 });
