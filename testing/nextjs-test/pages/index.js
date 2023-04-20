@@ -1,4 +1,7 @@
+import { useState } from "react";
+
 export default function Home() {
+  const [showText, setShowText] = useState(false);
   return (
     <div>
       <h1>Home page</h1>
@@ -12,6 +15,10 @@ export default function Home() {
       </div>
       <div>
         <input id="specificText" value="audio" />
+      </div>
+      <div>
+        {showText ? <h1>Hello world</h1> : null}
+        <button onClick={() => setShowText(!showText)}>Show text</button>
       </div>
     </div>
   );
