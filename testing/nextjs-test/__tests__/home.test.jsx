@@ -26,6 +26,6 @@ describe("Home page - rendering ", () => {
   });
   it("Should not find the Suprise text", () => {
     render(<Home />);
-    expect(screen.getByDisplayValue(/audio/)).toBeInTheDocument();
+    expect(screen.queryByText("Suprise text")).not.toBeInTheDocument();
   });
 });
