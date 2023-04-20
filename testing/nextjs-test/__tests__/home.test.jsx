@@ -30,4 +30,5 @@ describe("Home page", () => {
       expect(screen.queryByText("Suprise text")).not.toBeInTheDocument();
     });
   });
+  describe("Behaviour", () => {});
 });
