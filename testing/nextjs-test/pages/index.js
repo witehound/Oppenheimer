@@ -17,6 +17,7 @@ export default function Home() {
         <input id="specificText" value="audio" />
       </div>
       <div>
+        <span>This the text</span>
         {showText ? <h1>Hello world</h1> : null}
         <button onClick={() => setShowText(!showText)}>Show text</button>
       </div>
