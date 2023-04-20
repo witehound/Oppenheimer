@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import Home from "../pages";
 
 describe("Home page", () => {
-  describe("Home page - rendering ", () => {
+  describe("Rendering ", () => {
     it("Should have home page text", () => {
       render(<Home />);
       expect(screen.getByText("Home page")).toBeInTheDocument();
