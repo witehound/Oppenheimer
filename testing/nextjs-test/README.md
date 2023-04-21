@@ -11,4 +11,4 @@ Understanding tests, behavioural testing for uis, interaction
 Learned how to render and find text in the documnet
 Learned how to render and getByRole in the documnet
 Splited test suite into renddering, behaviour
-using jest to mock interaction
+using jest to mock interaction using testing-library/user-event package

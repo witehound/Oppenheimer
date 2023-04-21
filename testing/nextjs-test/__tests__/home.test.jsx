@@ -33,7 +33,7 @@ describe("Home page", () => {
   describe("Behaviour", () => {
     it("Should click on Show text button to find new text", () => {
       render(<Home />);
-      screen.getByRole("button", { name: "Show text" });
+      const showTextbutton = screen.getByRole("button", { name: "Show text" });
     });
   });
 });
